@@ -1,0 +1,15 @@
+﻿@model ExamProj.Models.Category
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<br />
+<form class="form-group" method="post">
+
+    <b>Category Name</b>
+    @Html.TextBoxFor(c=>c.CategoryName,new {@class="form-control"})
+    <br />
+    <button class="btn btn-info">Category Add</button>
+</form>
+

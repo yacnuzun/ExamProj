@@ -1,0 +1,19 @@
+﻿@model ExamProj.Models.Category
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+<br />
+@using(Html.BeginForm("Updated","Category",FormMethod.Post))
+{
+    <b>Category ID</b>
+    @Html.TextBoxFor(c=>c.CategoryId,new {@class="form-control"})
+    <br />
+    <b>Category Name</b>
+    @Html.TextBoxFor(c=>c.CategoryName,new {@class="form-control"})
+    <br />
+    <button class="btn btn-default" style="background-color:#ebdebe; color:black;"
+    >Category Update</button>
+}
+
+
