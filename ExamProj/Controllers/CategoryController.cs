@@ -39,8 +39,7 @@ namespace ExampProject.Controllers
         [HttpPost]
         public IActionResult Updated(Category c)
         {
-            var category = _context.Categories.Single(ca=>ca.CategoryId==c.CategoryId);
-            _context.Categories.Update(category);
+            _context.Categories.Update(c);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
