@@ -1,7 +1,7 @@
-﻿using ExamProj.Models;
+﻿using ExamProj.Models.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ExampProject.Models
+namespace ExamProj.Models
 {
     public class Context:DbContext
     {

@@ -1,4 +1,4 @@
-﻿@using ExamProj.Models
+﻿@using ExamProj.Models.Entity
 @model List<Category>
 @{
     ViewData["Title"] = "Index";
@@ -20,8 +20,8 @@
         {
     <tr>
         <td>@item.CategoryName</td>
-        <td><a href="/Category/Delete/@item.CategoryId"  class="btn btn-danger">Delete</a></td>
-        <td><a href="/Category/Update/@item.CategoryId" class="btn btn-success">Update</a></td>
+        <td><a name="id" href="/Category/Delete/@item.CategoryId"  class="btn btn-danger">Delete</a></td>
+        <td><a name="id" href="/Category/Update/@item.CategoryId" class="btn btn-success">Update</a></td>
 
     </tr>
         }

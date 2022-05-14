@@ -1,5 +1,5 @@
-﻿using ExampProject.Models;
-using ExamProj.Models;
+﻿using ExamProj.Models;
+using ExamProj.Models.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampProject.Controllers
@@ -33,7 +33,7 @@ namespace ExampProject.Controllers
         }
         public IActionResult Update(int id)
         {
-            var category = _context.Categories.SingleOrDefault();
+            var category = _context.Categories.SingleOrDefault(c=>c.CategoryId==id);
             return View("Update", category);
         }
         [HttpPost]

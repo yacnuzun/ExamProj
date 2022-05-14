@@ -57,7 +57,7 @@ namespace ExamProj.Migrations
                     ExampId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExamName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExamDuration = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExamDuration = table.Column<int>(type: "int", nullable: false),
                     ExamDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

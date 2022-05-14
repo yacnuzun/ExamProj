@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExamProj.Models
+namespace ExamProj.Models.Entity
 {
     public class Category
     {

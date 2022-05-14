@@ -1,0 +1,24 @@
+﻿@model ExamProj.Models.Entity.Exam
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+<br />
+@using(Html.BeginForm("Updated","Exam",FormMethod.Post))
+{
+    
+    @Html.HiddenFor(e=>e.ExampId,new {@class="form-control"})
+    <br />
+    <b>Exam Name</b>
+    @Html.TextBoxFor(e=>e.ExamName,new {@class="form-control"})
+    <br />
+    <b>Exam Duration</b>
+    @Html.TextBoxFor(e=>e.ExamDuration,new {@class="form-control"})
+    <br />
+    <b>Exam Description</b>
+    @Html.TextBoxFor(e=>e.ExamDescription,new {@class="form-control"})
+    <br />
+    <button type="submit" class="btn btn-default" style="background-color:#ebdebe; color:black;"
+    >Category Update</button>
+}
+

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExampProject.Models
+namespace ExamProj.Models.Entity
 {
     public class Question
     {

@@ -1,0 +1,33 @@
+﻿@using ExamProj.Models.DTOs
+@model List<ExamQuestionDTO>
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<br />
+<h2>@ViewBag.examname Exam</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Question Name</th>
+        <th>Question Answer</th>
+        <th>Question Type</th>
+        <th>Category</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Details</th>
+       
+    </tr>
+    @foreach(var examQuestions in Model)
+    {
+    <tr>
+        <td>@examQuestions.QuestionName</td>
+        <td>@examQuestions.QuestionAnswer</td>
+        <td>@examQuestions.QuestionTypeName</td>
+        <td>@examQuestions.CategoryName</td>
+        <td><a name="id" href="/Question/Delete/@examQuestions.QuestionId"  class="btn btn-danger">Delete</a></td>
+        <td><a name="id" href="/Question/Update/@examQuestions.QuestionId" class="btn btn-success">Update</a></td>
+    </tr>
+    }
+</table>
+

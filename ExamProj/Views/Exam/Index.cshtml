@@ -1,0 +1,38 @@
+﻿@using ExamProj.Models.Entity
+@model List<Exam>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<br />
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Exam Name</th>
+        <th>Exam Duration</th>
+        <th>Exam Description</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Details</th>
+
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+    <tr>
+        <td>@item.ExamName</td>
+        <td>@item.ExamDuration</td>
+        <td>@item.ExamDescription</td>
+        <td><a name="id" href="/Exam/Delete/@item.ExampId"  class="btn btn-danger">Delete</a></td>
+        <td><a name="id" href="/Exam/Update/@item.ExampId" class="btn btn-success">Update</a></td>
+        <td><a name="id" href="/Exam/Detail/@item.ExampId" class="btn btn-warning">Detail</a></td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+<a href="/Exam/Add/" class="btn btn-primary">New Exam</a>
+
+

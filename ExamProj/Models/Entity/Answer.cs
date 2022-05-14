@@ -1,4 +1,4 @@
-﻿namespace ExamProj.Models
+﻿namespace ExamProj.Models.Entity
 {
     public class Answer
     {

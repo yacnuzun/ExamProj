@@ -1,0 +1,21 @@
+﻿@model ExamProj.Models.Entity.Exam
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<br />
+<form class="form-group" method="post">
+
+    <b>Exam Name</b>
+    @Html.TextBoxFor(e=>e.ExamName,new {@class="form-control"})
+    <br />
+    <b>Exam Duration</b>
+    @Html.TextBoxFor(e=>e.ExamDuration,new {@class="form-control"})
+    <br />
+    <b>Exam Description</b>
+    @Html.TextBoxFor(e=>e.ExamDescription,new {@class="form-control"})
+    <br />
+    <button class="btn btn-info">Exam Add</button>
+</form>
+
