@@ -6,7 +6,10 @@
 }
 
 <br />
-<h2>@ViewBag.examname Exam</h2>
+@foreach(var exam in ViewBag.exams){
+<h2>@exam.ExamName Exam</h2>
+}
+
 <table class="table table-bordered">
     <tr>
         <th>Question Name</th>
@@ -14,8 +17,6 @@
         <th>Question Type</th>
         <th>Category</th>
         <th>Delete</th>
-        <th>Update</th>
-        <th>Details</th>
        
     </tr>
     @foreach(var examQuestions in Model)
@@ -25,9 +26,14 @@
         <td>@examQuestions.QuestionAnswer</td>
         <td>@examQuestions.QuestionTypeName</td>
         <td>@examQuestions.CategoryName</td>
-        <td><a name="id" href="/Question/Delete/@examQuestions.QuestionId"  class="btn btn-danger">Delete</a></td>
-        <td><a name="id" href="/Question/Update/@examQuestions.QuestionId" class="btn btn-success">Update</a></td>
+        <td><a name="id" href="/Question/Delete/@examQuestions.QuestionId" class="btn btn-danger">Delete</a></td>
     </tr>
-    }
+    
+    <input type="hidden" name="ExampId" value="@examQuestions.ExamId"/>
+
+}
+@foreach(var exam in ViewBag.exams){
+<a name="id" href="/Question/Add/@exam.ExampId" class="btn btn-primary">New Question</a>
+}
 </table>
 

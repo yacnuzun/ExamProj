@@ -1,0 +1,39 @@
+﻿@using ExamProj.Models.Entity
+@{
+    ViewData["Title"] = "DescriptAdd";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<h1>This is Description Page</h1>
+<form class="form-group" action="/Question/DescriptAdded" method="post">
+
+<br />
+<b>Question Name</b>
+<input type="text" name="QuestionName" />
+<br />
+<b>Question Answer</b>
+<input type="text" name="QuestionAnswer" />
+<br />
+<input type="hidden" name="QuestionTypeId" />
+@foreach(Exam exam in ViewBag.exid)
+{
+<input type="hidden" name="ExampId" value="@exam.ExampId" />
+}
+<b>Question Category</b>
+<br />
+    
+        <select name="CategoryId" id="CategoryId">
+            @foreach (Category category in ViewBag.categories)
+            {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+            }
+        </select>
+    
+    <br />
+    <button type="submit" class="btn btn-default" style="background-color:#ebdebe; color:black;"
+    >Question Add</button>
+
+</form>
+
+
+

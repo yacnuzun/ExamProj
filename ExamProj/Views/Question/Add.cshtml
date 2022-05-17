@@ -1,0 +1,11 @@
+﻿@using ExamProj.Models.Entity
+@model List<Exam>
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+@foreach(var exam in Model)
+{
+<a name="id" href="/Question/ChoiseAdd/@exam.ExampId" class="btn btn-primary">Add Choise Question</a>
+<a name="id" href="/Question/DescriptAdd/@exam.ExampId" class="btn btn-primary">Add Description Question</a>
+}

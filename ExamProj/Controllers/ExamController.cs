@@ -43,26 +43,7 @@ namespace ExamProj.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult Detail(int id)
-        {
-            var examQuestionDto = (from q in _context.Questions.Where(q=>q.ExampId==id)
-                                  join e in _context.Exams
-                                  on q.ExampId equals e.ExampId
-                                  join ca in _context.Categories
-                                  on q.CategoryId equals ca.CategoryId
-                                  join qt in _context.QuestionTypes
-                                  on q.QuestionTypeId equals qt.QuestionTypeId
-                                  select new ExamQuestionDTO()
-                                  {
-                                      QuestionId=q.QuestionId,
-                                      QuestionName = q.QuestionName,
-                                      QuestionAnswer = q.QuestionAnswer,
-                                      QuestionTypeName = qt.QuestionTypeName,
-                                      CategoryName = ca.CategoryName
-                                  }).ToList();
-            var examName=_context.Exams.Where(q=>q.ExampId==id).Select(qu=>qu.ExamName).FirstOrDefault();
-            ViewBag.ExamName = examName;
-            return View(examQuestionDto);
-        }
+        
+        
     }
 }

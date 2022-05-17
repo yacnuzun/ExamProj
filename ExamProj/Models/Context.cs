@@ -7,7 +7,7 @@ namespace ExamProj.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=ExampDb; Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=ExamDb; Trusted_Connection=True;");
         }
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Question>? Questions { get; set; }
@@ -15,5 +15,8 @@ namespace ExamProj.Models
         public DbSet<Exam>? Exams { get; set; }
         public DbSet<QuestionType>? QuestionTypes { get; set; }
         public DbSet<Answer>? Answers { get; set; }
+        public DbSet<User>? Users { get; set; }
+        public DbSet<Status>? Statuses { get; set; }
+        public DbSet<UserExam>? UserExams { get; set; }
     }
 }

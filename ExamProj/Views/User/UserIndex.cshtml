@@ -1,0 +1,30 @@
+﻿@using ExamProj.Models.Entity
+@model List<Exam>
+@{
+    ViewData["Title"] = "UserIndex";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<br />
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Exam Name</th>
+        <th>Exam Duration</th>
+        <th>Exam Description</th>
+
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+    <tr>
+        <td>@item.ExamName</td>
+        <td>@item.ExamDuration</td>
+        <td>@item.ExamDescription</td>
+
+    </tr>
+        }
+    </tbody>
+</table>
+

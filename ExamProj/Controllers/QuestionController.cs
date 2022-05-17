@@ -12,30 +12,72 @@ namespace ExamProj.Controllers
         {
             return View();
         }
-        public IActionResult Update(int id)
+        public IActionResult Add(int id)
         {
-            var secQuestion = (from q in _context.Questions.Where(q => q.QuestionId == id)
-                               join c in _context.Categories
-                               on q.CategoryId equals c.CategoryId
-                               join qt in _context.QuestionTypes
-                               on q.QuestionTypeId equals qt.QuestionTypeId
-                               select new QuestionDetailDto()
-                               {
-                                   QuestionName = q.QuestionName,
-                                   QuestionAnswer = q.QuestionAnswer,
-                                   QuestionType = qt.QuestionTypeName,
-                                   Category = c.CategoryName
-                               }).ToList();
-            ViewBag.categories = _context.Categories.ToList();
-            
-            return View("Update",secQuestion);
+            List<Exam> exid = _context.Exams.Where(e => e.ExampId == id).ToList();
+            return View(exid);
         }
-        public IActionResult Updated(Question question)
+        public IActionResult DescriptAdd(int id)
         {
-            
-            _context.Questions.Update(question);
+
+            ViewBag.categories = _context.Categories.ToList();
+            ViewBag.exid = _context.Exams.Where(e => e.ExampId == id).ToList();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult DescriptAdded(Question question)
+        {
+            _context.Questions.Add(question);
             _context.SaveChanges();
-            return RedirectToAction("~\\Exam\\Index\\");
+            return Redirect("~/Exam/Index");
+        }
+        public IActionResult ChoiseAdd(int id)
+        {
+            ViewBag.categories = _context.Categories.ToList();
+            ViewBag.exid = _context.Exams.Where(e => e.ExampId == id).ToList();
+            return View();
+        }
+        public IActionResult ChoiseAdded(ChoiseQuestionDto choiseQuestion)
+        {
+        //    _context.Questions.Add(question);
+        //    _context.Choices.Add(choice);
+            _context.SaveChanges();
+            return RedirectToAction("ChoisesAdded");
+        }
+        public IActionResult ChoisesAdded(Choice choice)
+        {
+            return Redirect("~/Exam/Index");
+        }
+        public IActionResult Detail(int id)
+        {
+            var examQuestionDto = (from q in _context.Questions.Where(q => q.ExampId == id)
+                                   join e in _context.Exams
+                                   on q.ExampId equals e.ExampId
+                                   join ca in _context.Categories
+                                   on q.CategoryId equals ca.CategoryId
+                                   join qt in _context.QuestionTypes
+                                   on q.QuestionTypeId equals qt.QuestionTypeId
+                                   select new ExamQuestionDTO()
+                                   {
+                                       ExamId = e.ExampId,
+                                       QuestionId = q.QuestionId,
+                                       QuestionName = q.QuestionName,
+                                       QuestionAnswer = q.QuestionAnswer,
+                                       QuestionTypeName = qt.QuestionTypeName,
+                                       CategoryName = ca.CategoryName
+                                   }).ToList();
+            ViewBag.exams = _context.Exams.Where(q => q.ExampId == id).ToList();
+
+            return View(examQuestionDto);
+
+        }
+       
+        public IActionResult Delete(int id)
+        {
+            var question = _context.Questions.FirstOrDefault(q => q.QuestionId== id);
+            _context.Questions.Remove(question);
+            _context.SaveChanges();
+            return Redirect("~/Exam/Index");
         }
     }
 }

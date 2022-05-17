@@ -1,0 +1,42 @@
+﻿@using ExamProj.Models.Entity
+@using ExamProj.Models.DTOs
+@{
+    ViewData["Title"] = "ChoiseAdd";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<h1>ChoiseAdd</h1>
+<form class="form-group" action="/Question/ChoiseAdded" method="post">
+
+<br />
+<b>Question Name</b>
+<input type="text" name="QuestionName" />
+<br />
+<b>Question Answer</b><br />
+@for(int i=0;i<=4;i++)
+{
+<input type="checkbox" name="QuestionAnswer" >
+<input type="text" name="ChoiseText" ><br />
+}
+<input type="hidden" name="QuestionTypeId" value="i"/>
+
+@foreach(Exam exam in ViewBag.exid)
+{
+<input type="hidden" name="ExampId" value="@exam.ExampId" />
+}
+<b>Question Category</b>
+<br />
+    
+        <select name="CategoryId" id="CategoryId">
+            @foreach (Category category in ViewBag.categories)
+            {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+            }
+        </select>
+    
+    <br />
+    <button type="submit" class="btn btn-default" style="background-color:#ebdebe; color:black;"
+    >Question Add</button>
+
+</form>
+

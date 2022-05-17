@@ -21,7 +21,7 @@ namespace ExamProj.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ExamProj.Models.Answer", b =>
+            modelBuilder.Entity("ExamProj.Models.Entity.Answer", b =>
                 {
                     b.Property<int>("AnswerId")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace ExamProj.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("ExamProj.Models.Category", b =>
+            modelBuilder.Entity("ExamProj.Models.Entity.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace ExamProj.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("ExamProj.Models.Choice", b =>
+            modelBuilder.Entity("ExamProj.Models.Entity.Choice", b =>
                 {
                     b.Property<int>("ChoiceId")
                         .ValueGeneratedOnAdd()
@@ -78,7 +78,7 @@ namespace ExamProj.Migrations
                     b.ToTable("Choices");
                 });
 
-            modelBuilder.Entity("ExamProj.Models.Exam", b =>
+            modelBuilder.Entity("ExamProj.Models.Entity.Exam", b =>
                 {
                     b.Property<int>("ExampId")
                         .ValueGeneratedOnAdd()
@@ -100,7 +100,7 @@ namespace ExamProj.Migrations
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("ExamProj.Models.Question", b =>
+            modelBuilder.Entity("ExamProj.Models.Entity.Question", b =>
                 {
                     b.Property<int>("QuestionId")
                         .ValueGeneratedOnAdd()
@@ -131,7 +131,7 @@ namespace ExamProj.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("ExamProj.Models.QuestionType", b =>
+            modelBuilder.Entity("ExamProj.Models.Entity.QuestionType", b =>
                 {
                     b.Property<int>("QuestionTypeId")
                         .ValueGeneratedOnAdd()
@@ -139,15 +139,72 @@ namespace ExamProj.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionTypeId"), 1L, 1);
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("QuestionTypeName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionTypeId");
 
                     b.ToTable("QuestionTypes");
+                });
+
+            modelBuilder.Entity("ExamProj.Models.Entity.Status", b =>
+                {
+                    b.Property<int>("StatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"), 1L, 1);
+
+                    b.Property<string>("StatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusId");
+
+                    b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("ExamProj.Models.Entity.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserStatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ExamProj.Models.Entity.UserExam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ExampId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserExams");
                 });
 #pragma warning restore 612, 618
         }
