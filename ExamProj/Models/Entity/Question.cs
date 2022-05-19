@@ -7,7 +7,6 @@ namespace ExamProj.Models.Entity
         [Key]
         public int QuestionId { get; set; }
         public string? QuestionName { get; set; }
-        public bool IsTrue { get; set; }
         public string? QuestionAnswer { get; set; }
         public int QuestionTypeId { get; set; }
         public int CategoryId { get; set; }

@@ -83,6 +83,15 @@ namespace ExamProj.Controllers
         public IActionResult UserExamped(UserExamQuest userExamQuest)
         {
             Answer answer = new Answer();
+            int userAnswerTrue = _context.Questions.Where(q => q.QuestionAnswer == userExamQuest.QuestionAnswer).Count();
+            if (userAnswerTrue==0)
+            {
+                answer.IsTrue = false;
+            }
+            else
+            {
+                answer.IsTrue = true;
+            }
             answer.QuestionId=userExamQuest.QuestionId;
             answer.AnswerText = userExamQuest.QuestionAnswer;
             answer.DescriptionAnswer = userExamQuest.QuestionAnswer;
