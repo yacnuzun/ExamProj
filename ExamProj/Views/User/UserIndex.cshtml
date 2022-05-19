@@ -1,5 +1,5 @@
-﻿@using ExamProj.Models.Entity
-@model List<Exam>
+﻿@using ExamProj.Models.DTOs
+@model List<UserExamQuest>
 @{
     ViewData["Title"] = "UserIndex";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -12,6 +12,7 @@
         <th>Exam Name</th>
         <th>Exam Duration</th>
         <th>Exam Description</th>
+        <th>Enter</th>
 
     </tr>
     </thead>
@@ -22,8 +23,9 @@
         <td>@item.ExamName</td>
         <td>@item.ExamDuration</td>
         <td>@item.ExamDescription</td>
-
+        
     </tr>
+        <td><a name="id" asp-controller="User" asp-action="UserExamp" class="btn btn-primary">Enter</a></td>
         }
     </tbody>
 </table>

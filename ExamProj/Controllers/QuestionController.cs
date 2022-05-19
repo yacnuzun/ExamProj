@@ -17,19 +17,25 @@ namespace ExamProj.Controllers
             List<Exam> exid = _context.Exams.Where(e => e.ExampId == id).ToList();
             return View(exid);
         }
-        public IActionResult DescriptAdd(int id)
+        public IActionResult DescriptAdd(int id,List<Exam> exam)
         {
-
+            exam = _context.Exams.Where(e => e.ExampId == id).ToList();
             ViewBag.categories = _context.Categories.ToList();
             ViewBag.exid = _context.Exams.Where(e => e.ExampId == id).ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult DescriptAdded(Question question)
+        public IActionResult DescriptAdded(ExamQuestionDTO examQuestionDTO)
         {
+            Question question = new Question();
+            question.QuestionName= examQuestionDTO.QuestionName;
+            question.ExampId = examQuestionDTO.ExamId;
+            question.CategoryId = examQuestionDTO.CategoryId;
+            question.QuestionAnswer= examQuestionDTO.QuestionAnswer;
+            question.QuestionTypeId = 2;
             _context.Questions.Add(question);
             _context.SaveChanges();
-            return Redirect("~/Exam/Index");
+            return RedirectToAction("Detail",question);
         }
         public IActionResult ChoiseAdd(int id)
         {
@@ -48,8 +54,12 @@ namespace ExamProj.Controllers
         {
             return Redirect("~/Exam/Index");
         }
-        public IActionResult Detail(int id)
+        public IActionResult Detail(int id,Question question)
         {
+            if (id == 0)
+            {
+                id = question.ExampId;
+            }
             var examQuestionDto = (from q in _context.Questions.Where(q => q.ExampId == id)
                                    join e in _context.Exams
                                    on q.ExampId equals e.ExampId
@@ -74,10 +84,11 @@ namespace ExamProj.Controllers
        
         public IActionResult Delete(int id)
         {
+            ViewBag.categories = _context.Categories.ToList();
             var question = _context.Questions.FirstOrDefault(q => q.QuestionId== id);
             _context.Questions.Remove(question);
             _context.SaveChanges();
-            return Redirect("~/Exam/Index");
+            return RedirectToAction("Detail", question);
         }
     }
 }

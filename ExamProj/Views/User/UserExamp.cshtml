@@ -1,0 +1,15 @@
+﻿@using ExamProj.Models.DTOs
+@model List<UserExamQuest>
+@{
+    ViewData["Title"] = "UserExamp";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<form asp-controller="User" asp-action="UserExamped">
+@foreach(var exam in Model)
+{
+    <label>Timer</label>
+    <p>@exam.QuestionName</p>
+    <input type="text" name="QuestionAnswer" />
+    <button type="submit"  class="btn btn-success  col-md-3">Next Question</button>
+}
+</form>
